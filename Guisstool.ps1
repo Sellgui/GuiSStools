@@ -1,5 +1,5 @@
 # ================================================
-#   GuiSS Tools Launcher - Scroll Links + Prefetch
+#   GuiSS Tools Launcher - Donker Groen + Patroon
 # ================================================
 
 Add-Type -AssemblyName PresentationFramework
@@ -23,7 +23,13 @@ Add-Type -AssemblyName System.Windows.Forms
     Background="Transparent"
     FontFamily="Segoe UI">
 
-    <Border Background="#0A3D1F" CornerRadius="12" BorderBrush="#1E8C4A" BorderThickness="2">
+    <Border CornerRadius="12" BorderBrush="#1E8C4A" BorderThickness="2">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#0A3D1F" Offset="0"/>
+                <GradientStop Color="#0F5C2F" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
@@ -46,7 +52,7 @@ Add-Type -AssemblyName System.Windows.Forms
 
                 <!-- Linker Sidebar met Scroll -->
                 <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="0,0,10,0">
-                    <Border Background="#0A3D1F" BorderBrush="#1E8C4A" BorderThickness="0,0,1,0" CornerRadius="8" Padding="20">
+                    <Border Background="#0A3D1F" BorderBrush="#1E8C4A" BorderThickness="0,0,1,0" CornerRadius="8" Padding="25">
                         <StackPanel>
                             <TextBlock Text="GuiSS Tools" FontSize="24" FontWeight="Bold" Foreground="#A8FFCC" Margin="0,0,0,30"/>
                             <TextBlock Text="ACTIONS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,0,0,10"/>
