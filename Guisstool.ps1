@@ -1,5 +1,5 @@
 # ================================================
-#   GuiSS Tools Launcher - Ronde Knoppen (geen rand)
+#   GuiSS Tools Launcher - Stabiele Versie
 # ================================================
 
 Add-Type -AssemblyName PresentationFramework
@@ -15,7 +15,7 @@ Add-Type -AssemblyName System.Windows.Forms
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="GuiSS Tools Launcher"
-    Width="1160" Height="740"
+    Width="1150" Height="720"
     WindowStartupLocation="CenterScreen"
     ResizeMode="NoResize"
     WindowStyle="None"
@@ -40,7 +40,7 @@ Add-Type -AssemblyName System.Windows.Forms
 
             <Grid Grid.Row="1" Margin="25">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="270"/>
+                    <ColumnDefinition Width="260"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
@@ -50,9 +50,9 @@ Add-Type -AssemblyName System.Windows.Forms
                         <TextBlock Text="GuiSS Tools" FontSize="24" FontWeight="Bold" Foreground="#A8FFCC" Margin="0,0,0,30"/>
                         <TextBlock Text="ACTIONS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,0,0,10"/>
                         
-                        <Button x:Name="OpenFolderBtn" Content=" Open Install Folder" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5" CornerRadius="8"/>
-                        <Button x:Name="ClearBtn" Content=" Clear Downloaded Files" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5" CornerRadius="8"/>
-                        <Button x:Name="OpenCmdBtn" Content=" Open CMD" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5" CornerRadius="8"/>
+                        <Button x:Name="OpenFolderBtn" Content=" Open Install Folder" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
+                        <Button x:Name="ClearBtn" Content=" Clear Downloaded Files" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
+                        <Button x:Name="OpenCmdBtn" Content=" Open CMD" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
                     </StackPanel>
                 </Border>
 
@@ -61,61 +61,15 @@ Add-Type -AssemblyName System.Windows.Forms
                     <TextBlock Text="Ready" FontSize="28" FontWeight="SemiBold" Foreground="#C5FFDD"/>
                     <TextBlock Text="Select a tool to launch" FontSize="13" Foreground="#8CFFBB" Margin="0,5,0,30"/>
 
-                    <Button x:Name="CheesyBtn" Height="62" Margin="0,8" FontSize="16" FontWeight="Bold" Content="Start CheesySS Tools" CornerRadius="10">
-                        <Button.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#1E8C4A" Offset="0"/>
-                                <GradientStop Color="#34D399" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
-
-                    <Button x:Name="TeslaBtn" Height="62" Margin="0,8" FontSize="16" FontWeight="Bold" Content="Start TeslaPro SS Tools" CornerRadius="10">
-                        <Button.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#1E8C4A" Offset="0"/>
-                                <GradientStop Color="#34D399" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
+                    <Button x:Name="CheesyBtn" Height="62" Margin="0,8" FontSize="16" FontWeight="Bold" Content="Start CheesySS Tools"/>
+                    <Button x:Name="TeslaBtn" Height="62" Margin="0,8" FontSize="16" FontWeight="Bold" Content="Start TeslaPro SS Tools"/>
 
                     <TextBlock Text="Extra Tools" FontSize="14" FontWeight="SemiBold" Foreground="#C5FFDD" Margin="0,30,0,12"/>
 
-                    <Button x:Name="PrefetchBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="Open Prefetch" CornerRadius="10">
-                        <Button.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#1E8C4A" Offset="0"/>
-                                <GradientStop Color="#34D399" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
-
-                    <Button x:Name="ProcessHackerBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="Process Hacker" CornerRadius="10">
-                        <Button.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#1E8C4A" Offset="0"/>
-                                <GradientStop Color="#34D399" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
-
-                    <Button x:Name="AnyDeskBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="AnyDesk" CornerRadius="10">
-                        <Button.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#1E8C4A" Offset="0"/>
-                                <GradientStop Color="#34D399" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
-
-                    <Button x:Name="SystemInformerBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="System Informer" CornerRadius="10">
-                        <Button.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#1E8C4A" Offset="0"/>
-                                <GradientStop Color="#34D399" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
+                    <Button x:Name="PrefetchBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="Open Prefetch"/>
+                    <Button x:Name="ProcessHackerBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="Process Hacker"/>
+                    <Button x:Name="AnyDeskBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="AnyDesk"/>
+                    <Button x:Name="SystemInformerBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="System Informer"/>
                 </StackPanel>
             </Grid>
 
@@ -157,10 +111,10 @@ function Write-Console($msg) {
 # Acties
 $CheesyBtn.Add_Click({ Write-Console "CheesySS Tools starten..."; Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "Invoke-Expression (Invoke-RestMethod ''https://raw.githubusercontent.com/cheesecatlol/CheesySSTool/refs/heads/main/CheesySSTool.ps1'')" ' })
 $TeslaBtn.Add_Click({ Write-Console "TeslaPro Tools starten..."; Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "irm ''https://raw.githubusercontent.com/TeslaPros/TeslaPro-s-SS-Tools/main/installer.ps1'' | iex"' })
-$PrefetchBtn.Add_Click({ Write-Console "Prefetch geopend..."; Start-Process "https://github.com/Orbdiff/PrefetchView/releases/latest" })
-$ProcessHackerBtn.Add_Click({ Write-Console "Process Hacker (nieuwste) geopend..."; Start-Process "https://processhacker.sourceforge.io/downloads.php" })
+$PrefetchBtn.Add_Click({ Write-Console "Prefetch map geopend..."; Start-Process explorer.exe -ArgumentList "C:\Windows\Prefetch" })
+$ProcessHackerBtn.Add_Click({ Write-Console "Process Hacker geopend..."; Start-Process "https://processhacker.sourceforge.io/downloads.php" })
 $AnyDeskBtn.Add_Click({ Write-Console "AnyDesk geopend..."; Start-Process "https://anydesk.com/nl/downloads" })
-$SystemInformerBtn.Add_Click({ Write-Console "System Informer (Canary) geopend..."; Start-Process "https://systeminformer.com/canary" })
+$SystemInformerBtn.Add_Click({ Write-Console "System Informer geopend..."; Start-Process "https://systeminformer.com/canary" })
 
 $CloseBtn.Add_Click({ $window.Close() })
 $OpenFolderBtn.Add_Click({ explorer . })
