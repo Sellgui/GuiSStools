@@ -1,5 +1,5 @@
 # ================================================
-#   GuiSS Tools Launcher - Prefetch opent lokaal
+#   GuiSS Tools Launcher - Stabiele Versie
 # ================================================
 
 Add-Type -AssemblyName PresentationFramework
@@ -15,7 +15,7 @@ Add-Type -AssemblyName System.Windows.Forms
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="GuiSS Tools Launcher"
-    Width="1160" Height="740"
+    Width="1150" Height="720"
     WindowStartupLocation="CenterScreen"
     ResizeMode="NoResize"
     WindowStyle="None"
@@ -40,7 +40,7 @@ Add-Type -AssemblyName System.Windows.Forms
 
             <Grid Grid.Row="1" Margin="25">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="270"/>
+                    <ColumnDefinition Width="260"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
@@ -157,16 +157,10 @@ function Write-Console($msg) {
 # Acties
 $CheesyBtn.Add_Click({ Write-Console "CheesySS Tools starten..."; Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "Invoke-Expression (Invoke-RestMethod ''https://raw.githubusercontent.com/cheesecatlol/CheesySSTool/refs/heads/main/CheesySSTool.ps1'')" ' })
 $TeslaBtn.Add_Click({ Write-Console "TeslaPro Tools starten..."; Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "irm ''https://raw.githubusercontent.com/TeslaPros/TeslaPro-s-SS-Tools/main/installer.ps1'' | iex"' })
-
-# Prefetch opent nu lokaal op je pc
-$PrefetchBtn.Add_Click({ 
-    Write-Console "Prefetch map geopend (C:\Windows\Prefetch)..."
-    Start-Process explorer.exe -ArgumentList "C:\Windows\Prefetch"
-})
-
-$ProcessHackerBtn.Add_Click({ Write-Console "Process Hacker (nieuwste) geopend..."; Start-Process "https://processhacker.sourceforge.io/downloads.php" })
+$PrefetchBtn.Add_Click({ Write-Console "Prefetch geopend..."; Start-Process "https://github.com/Orbdiff/PrefetchView/releases/latest" })
+$ProcessHackerBtn.Add_Click({ Write-Console "Process Hacker geopend..."; Start-Process "https://processhacker.sourceforge.io/downloads.php" })
 $AnyDeskBtn.Add_Click({ Write-Console "AnyDesk geopend..."; Start-Process "https://anydesk.com/nl/downloads" })
-$SystemInformerBtn.Add_Click({ Write-Console "System Informer (Canary) geopend..."; Start-Process "https://systeminformer.com/canary" })
+$SystemInformerBtn.Add_Click({ Write-Console "System Informer geopend..."; Start-Process "https://systeminformer.com/canary" })
 
 $CloseBtn.Add_Click({ $window.Close() })
 $OpenFolderBtn.Add_Click({ explorer . })
