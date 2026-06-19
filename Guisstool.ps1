@@ -1,5 +1,5 @@
 # ================================================
-#   GuiSS Tools Launcher - Stabiele Versie
+#   GuiSS Tools Launcher - Stabiele Basis Versie
 # ================================================
 
 Add-Type -AssemblyName PresentationFramework
@@ -45,7 +45,7 @@ Add-Type -AssemblyName System.Windows.Forms
                 </Grid.ColumnDefinitions>
 
                 <!-- Sidebar -->
-                <Border Grid.Column="0" Background="#0A3D1F" BorderBrush="#1E8C4A" BorderThickness="0,0,1,0" CornerRadius="8">
+                <Border Grid.Column="0" Background="#0A3D1F" BorderBrush="#1E8C4A" BorderThickness="0,0,1,0">
                     <StackPanel Margin="25,35,20,20">
                         <TextBlock Text="GuiSS Tools" FontSize="24" FontWeight="Bold" Foreground="#A8FFCC" Margin="0,0,0,30"/>
                         <TextBlock Text="ACTIONS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,0,0,10"/>
