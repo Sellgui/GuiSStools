@@ -1,5 +1,5 @@
 # ================================================
-#   GuiSS Tools Launcher - Donker Groen + Patroon
+#   GuiSS Tools Launcher - Kleine Knoppen (geen scroll)
 # ================================================
 
 Add-Type -AssemblyName PresentationFramework
@@ -23,13 +23,7 @@ Add-Type -AssemblyName System.Windows.Forms
     Background="Transparent"
     FontFamily="Segoe UI">
 
-    <Border CornerRadius="12" BorderBrush="#1E8C4A" BorderThickness="2">
-        <Border.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#0A3D1F" Offset="0"/>
-                <GradientStop Color="#0F5C2F" Offset="1"/>
-            </LinearGradientBrush>
-        </Border.Background>
+    <Border Background="#0A3D1F" CornerRadius="12" BorderBrush="#1E8C4A" BorderThickness="2">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
@@ -46,31 +40,29 @@ Add-Type -AssemblyName System.Windows.Forms
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="290"/>
+                    <ColumnDefinition Width="280"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Linker Sidebar met Scroll -->
-                <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="0,0,10,0">
-                    <Border Background="#0A3D1F" BorderBrush="#1E8C4A" BorderThickness="0,0,1,0" CornerRadius="8" Padding="25">
-                        <StackPanel>
-                            <TextBlock Text="GuiSS Tools" FontSize="24" FontWeight="Bold" Foreground="#A8FFCC" Margin="0,0,0,30"/>
-                            <TextBlock Text="ACTIONS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,0,0,10"/>
-                            
-                            <Button x:Name="OpenFolderBtn" Content=" Open Install Folder" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
-                            <Button x:Name="ClearBtn" Content=" Open Prefetch Folder" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
-                            <Button x:Name="OpenCmdBtn" Content=" Open CMD" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
+                <!-- Linker Sidebar -->
+                <Border Grid.Column="0" Background="#0A3D1F" BorderBrush="#1E8C4A" BorderThickness="0,0,1,0" CornerRadius="8" Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="GuiSS Tools" FontSize="22" FontWeight="Bold" Foreground="#A8FFCC" Margin="0,0,0,25"/>
+                        <TextBlock Text="ACTIONS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,0,0,8"/>
+                        
+                        <Button x:Name="OpenFolderBtn" Content=" Open Install Folder" Height="36" Background="#1E8C4A" Foreground="White" Margin="0,4"/>
+                        <Button x:Name="ClearBtn" Content=" Open Prefetch Folder" Height="36" Background="#1E8C4A" Foreground="White" Margin="0,4"/>
+                        <Button x:Name="OpenCmdBtn" Content=" Open CMD" Height="36" Background="#1E8C4A" Foreground="White" Margin="0,4"/>
 
-                            <TextBlock Text="TOOLS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,30,0,10"/>
+                        <TextBlock Text="TOOLS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,25,0,8"/>
 
-                            <Button x:Name="CheesyBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Start CheesySS Tools"/>
-                            <Button x:Name="TeslaBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Start TeslaPro SS Tools"/>
-                            <Button x:Name="ProcessHackerBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Process Hacker"/>
-                            <Button x:Name="AnyDeskBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="AnyDesk"/>
-                            <Button x:Name="SystemInformerBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="System Informer"/>
-                        </StackPanel>
-                    </Border>
-                </ScrollViewer>
+                        <Button x:Name="CheesyBtn" Height="42" Margin="0,4" Background="#1E8C4A" Foreground="White" FontSize="13" FontWeight="Bold" Content="Start CheesySS Tools"/>
+                        <Button x:Name="TeslaBtn" Height="42" Margin="0,4" Background="#1E8C4A" Foreground="White" FontSize="13" FontWeight="Bold" Content="Start TeslaPro SS Tools"/>
+                        <Button x:Name="ProcessHackerBtn" Height="42" Margin="0,4" Background="#1E8C4A" Foreground="White" FontSize="13" FontWeight="Bold" Content="Process Hacker"/>
+                        <Button x:Name="AnyDeskBtn" Height="42" Margin="0,4" Background="#1E8C4A" Foreground="White" FontSize="13" FontWeight="Bold" Content="AnyDesk"/>
+                        <Button x:Name="SystemInformerBtn" Height="42" Margin="0,4" Background="#1E8C4A" Foreground="White" FontSize="13" FontWeight="Bold" Content="System Informer"/>
+                    </StackPanel>
+                </Border>
 
                 <!-- Main Area -->
                 <StackPanel Grid.Column="1" Margin="30,35,40,30">
