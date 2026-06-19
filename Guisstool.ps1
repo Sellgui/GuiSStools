@@ -1,5 +1,5 @@
 # ================================================
-#   GuiSS Tools Launcher - Stabiel (geen CornerRadius)
+#   GuiSS Tools Launcher - Super Simpele Stabiele Versie
 # ================================================
 
 Add-Type -AssemblyName PresentationFramework
@@ -8,14 +8,12 @@ Add-Type -AssemblyName WindowsBase
 Add-Type -AssemblyName System.Xaml
 Add-Type -AssemblyName System.Windows.Forms
 
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-
 [xml]$xaml = @"
 <Window
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="GuiSS Tools Launcher"
-    Width="1150" Height="740"
+    Width="1000" Height="650"
     WindowStartupLocation="CenterScreen"
     ResizeMode="NoResize"
     WindowStyle="None"
@@ -23,7 +21,7 @@ Add-Type -AssemblyName System.Windows.Forms
     Background="Transparent"
     FontFamily="Segoe UI">
 
-    <Border Background="#0A3D1F" CornerRadius="12" BorderBrush="#1E8C4A" BorderThickness="2">
+    <Border Background="#0A3D1F" CornerRadius="8" BorderBrush="#1E8C4A" BorderThickness="2">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
@@ -31,91 +29,46 @@ Add-Type -AssemblyName System.Windows.Forms
             </Grid.RowDefinitions>
 
             <!-- Title Bar -->
-            <Border Grid.Row="0" Background="#0F5C2F" CornerRadius="12,12,0,0">
+            <Border Grid.Row="0" Background="#0F5C2F" CornerRadius="8,8,0,0">
                 <Grid>
-                    <TextBlock Text="GuiSS Tools Launcher" Margin="30,0,0,0" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold" Foreground="#C5FFDD"/>
-                    <Button x:Name="CloseBtn" Content="✕" Width="40" Height="35" HorizontalAlignment="Right" Background="Transparent" Foreground="#C5FFDD" BorderThickness="0" Margin="0,0,20,0" FontSize="18"/>
+                    <TextBlock Text="GuiSS Tools Launcher" Margin="25,0,0,0" VerticalAlignment="Center" FontSize="15" FontWeight="SemiBold" Foreground="#C5FFDD"/>
+                    <Button x:Name="CloseBtn" Content="✕" Width="40" Height="35" HorizontalAlignment="Right" Background="Transparent" Foreground="#C5FFDD" BorderThickness="0" Margin="0,0,15,0" FontSize="16"/>
                 </Grid>
             </Border>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Margin="20">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="280"/>
+                    <ColumnDefinition Width="250"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <!-- Sidebar -->
-                <Border Grid.Column="0" Background="#0A3D1F" BorderBrush="#1E8C4A" BorderThickness="0,0,1,0" CornerRadius="8" Padding="20">
+                <Border Grid.Column="0" Background="#0A3D1F" BorderBrush="#1E8C4A" BorderThickness="0,0,1,0" Padding="15">
                     <StackPanel>
-                        <TextBlock Text="GuiSS Tools" FontSize="24" FontWeight="Bold" Foreground="#A8FFCC" Margin="0,0,0,30"/>
-                        <TextBlock Text="ACTIONS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,0,0,10"/>
+                        <TextBlock Text="GuiSS Tools" FontSize="20" FontWeight="Bold" Foreground="#A8FFCC" Margin="0,0,0,20"/>
                         
-                        <Button x:Name="OpenFolderBtn" Content=" Open Install Folder" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
-                        <Button x:Name="ClearBtn" Content=" Open Prefetch Folder" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
-                        <Button x:Name="OpenCmdBtn" Content=" Open CMD" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
+                        <Button x:Name="OpenFolderBtn" Content=" Open Install Folder" Height="35" Background="#1E8C4A" Foreground="White" Margin="0,4"/>
+                        <Button x:Name="ClearBtn" Content=" Open Prefetch Folder" Height="35" Background="#1E8C4A" Foreground="White" Margin="0,4"/>
+                        <Button x:Name="OpenCmdBtn" Content=" Open CMD" Height="35" Background="#1E8C4A" Foreground="White" Margin="0,4"/>
 
-                        <TextBlock Text="TOOLS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,25,0,10"/>
+                        <TextBlock Text="TOOLS" FontSize="11" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,25,0,10"/>
 
-                        <Button x:Name="CheesyBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Start CheesySS Tools"/>
-                        <Button x:Name="TeslaBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Start TeslaPro SS Tools"/>
-                        <Button x:Name="ProcessHackerBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Process Hacker"/>
-                        <Button x:Name="AnyDeskBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="AnyDesk"/>
-                        <Button x:Name="SystemInformerBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="System Informer"/>
+                        <Button x:Name="CheesyBtn" Height="45" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="13" FontWeight="Bold" Content="Start CheesySS Tools"/>
+                        <Button x:Name="TeslaBtn" Height="45" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="13" FontWeight="Bold" Content="Start TeslaPro SS Tools"/>
+                        <Button x:Name="ProcessHackerBtn" Height="45" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="13" FontWeight="Bold" Content="Process Hacker"/>
+                        <Button x:Name="AnyDeskBtn" Height="45" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="13" FontWeight="Bold" Content="AnyDesk"/>
+                        <Button x:Name="SystemInformerBtn" Height="45" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="13" FontWeight="Bold" Content="System Informer"/>
                     </StackPanel>
                 </Border>
 
                 <!-- Main Area -->
                 <StackPanel Grid.Column="1" Margin="30,35,40,30">
-                    <TextBlock Text="Ready" FontSize="28" FontWeight="SemiBold" Foreground="#C5FFDD"/>
+                    <TextBlock Text="Ready" FontSize="26" FontWeight="SemiBold" Foreground="#C5FFDD"/>
                     <TextBlock Text="Select a tool to launch" FontSize="13" Foreground="#8CFFBB" Margin="0,5,0,30"/>
                 </StackPanel>
             </Grid>
 
             <!-- Console -->
-            <Border Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Height="155" Background="#041F10" BorderBrush="#1E8C4A" BorderThickness="0,1,0,0">
+            <Border Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Height="140" Background="#041F10" BorderBrush="#1E8C4A" BorderThickness="0,1,0,0">
                 <Grid Margin="30,12">
-                    <TextBlock Text="ACTIVITY CONSOLE" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,0,0,6"/>
-                    <TextBox x:Name="ConsoleBox" Background="Transparent" Foreground="#A0E8C0" FontFamily="Consolas" FontSize="11" IsReadOnly="True" VerticalScrollBarVisibility="Auto" BorderThickness="0"/>
-                </Grid>
-            </Border>
-        </Grid>
-    </Border>
-</Window>
-"@
-
-$reader = New-Object System.Xml.XmlNodeReader $xaml
-$window = [Windows.Markup.XamlReader]::Load($reader)
-
-$CloseBtn = $window.FindName("CloseBtn")
-$CheesyBtn = $window.FindName("CheesyBtn")
-$TeslaBtn = $window.FindName("TeslaBtn")
-$ProcessHackerBtn = $window.FindName("ProcessHackerBtn")
-$AnyDeskBtn = $window.FindName("AnyDeskBtn")
-$SystemInformerBtn = $window.FindName("SystemInformerBtn")
-$ConsoleBox = $window.FindName("ConsoleBox")
-$OpenFolderBtn = $window.FindName("OpenFolderBtn")
-$ClearBtn = $window.FindName("ClearBtn")
-$OpenCmdBtn = $window.FindName("OpenCmdBtn")
-
-function Write-Console($msg) {
-    $time = Get-Date -Format "HH:mm:ss"
-    $ConsoleBox.Dispatcher.Invoke({
-        $ConsoleBox.AppendText("[$time] $msg`r`n")
-        $ConsoleBox.ScrollToEnd()
-    })
-}
-
-# Acties
-$CheesyBtn.Add_Click({ Write-Console "CheesySS Tools starten..."; Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "Invoke-Expression (Invoke-RestMethod ''https://raw.githubusercontent.com/cheesecatlol/CheesySSTool/refs/heads/main/CheesySSTool.ps1'')" ' })
-$TeslaBtn.Add_Click({ Write-Console "TeslaPro Tools starten..."; Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "irm ''https://raw.githubusercontent.com/TeslaPros/TeslaPro-s-SS-Tools/main/installer.ps1'' | iex"' })
-$ClearBtn.Add_Click({ Write-Console "Prefetch map geopend..."; Start-Process explorer.exe -ArgumentList "C:\Windows\Prefetch" })
-$ProcessHackerBtn.Add_Click({ Write-Console "Process Hacker geopend..."; Start-Process "https://processhacker.sourceforge.io/downloads.php" })
-$AnyDeskBtn.Add_Click({ Write-Console "AnyDesk geopend..."; Start-Process "https://anydesk.com/nl/downloads" })
-$SystemInformerBtn.Add_Click({ Write-Console "System Informer geopend..."; Start-Process "https://systeminformer.com/canary" })
-
-$CloseBtn.Add_Click({ $window.Close() })
-$OpenFolderBtn.Add_Click({ explorer . })
-$OpenCmdBtn.Add_Click({ Start-Process cmd.exe })
-
-Write-Console "GuiSS Tools Launcher gestart."
-$window.ShowDialog() | Out-Null
+                    <TextBlock Text="ACTIVITY CONSOLE" FontSize="9
