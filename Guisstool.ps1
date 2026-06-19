@@ -1,5 +1,5 @@
 # ================================================
-#   GuiSS Tools Launcher - Stabiele Basis Versie
+#   GuiSS Tools Launcher - Scroll + Donker Groen
 # ================================================
 
 Add-Type -AssemblyName PresentationFramework
@@ -15,7 +15,7 @@ Add-Type -AssemblyName System.Windows.Forms
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="GuiSS Tools Launcher"
-    Width="1150" Height="720"
+    Width="1160" Height="740"
     WindowStartupLocation="CenterScreen"
     ResizeMode="NoResize"
     WindowStyle="None"
@@ -40,12 +40,12 @@ Add-Type -AssemblyName System.Windows.Forms
 
             <Grid Grid.Row="1" Margin="25">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="260"/>
+                    <ColumnDefinition Width="270"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <!-- Sidebar -->
-                <Border Grid.Column="0" Background="#0A3D1F" BorderBrush="#1E8C4A" BorderThickness="0,0,1,0">
+                <Border Grid.Column="0" Background="#0A3D1F" BorderBrush="#1E8C4A" BorderThickness="0,0,1,0" CornerRadius="8">
                     <StackPanel Margin="25,35,20,20">
                         <TextBlock Text="GuiSS Tools" FontSize="24" FontWeight="Bold" Foreground="#A8FFCC" Margin="0,0,0,30"/>
                         <TextBlock Text="ACTIONS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,0,0,10"/>
@@ -56,21 +56,23 @@ Add-Type -AssemblyName System.Windows.Forms
                     </StackPanel>
                 </Border>
 
-                <!-- Main Area -->
-                <StackPanel Grid.Column="1" Margin="35,35,40,30">
-                    <TextBlock Text="Ready" FontSize="28" FontWeight="SemiBold" Foreground="#C5FFDD"/>
-                    <TextBlock Text="Select a tool to launch" FontSize="13" Foreground="#8CFFBB" Margin="0,5,0,30"/>
+                <!-- Main Area with Scroll -->
+                <ScrollViewer Grid.Column="1" Margin="35,35,40,30" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Ready" FontSize="28" FontWeight="SemiBold" Foreground="#C5FFDD"/>
+                        <TextBlock Text="Select a tool to launch" FontSize="13" Foreground="#8CFFBB" Margin="0,5,0,30"/>
 
-                    <Button x:Name="CheesyBtn" Height="62" Margin="0,8" FontSize="16" FontWeight="Bold" Content="Start CheesySS Tools"/>
-                    <Button x:Name="TeslaBtn" Height="62" Margin="0,8" FontSize="16" FontWeight="Bold" Content="Start TeslaPro SS Tools"/>
+                        <Button x:Name="CheesyBtn" Height="62" Margin="0,8" FontSize="16" FontWeight="Bold" Content="Start CheesySS Tools" Background="#1E8C4A" Foreground="White"/>
+                        <Button x:Name="TeslaBtn" Height="62" Margin="0,8" FontSize="16" FontWeight="Bold" Content="Start TeslaPro SS Tools" Background="#1E8C4A" Foreground="White"/>
 
-                    <TextBlock Text="Extra Tools" FontSize="14" FontWeight="SemiBold" Foreground="#C5FFDD" Margin="0,30,0,12"/>
+                        <TextBlock Text="Extra Tools" FontSize="14" FontWeight="SemiBold" Foreground="#C5FFDD" Margin="0,30,0,12"/>
 
-                    <Button x:Name="PrefetchBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="Open Prefetch"/>
-                    <Button x:Name="ProcessHackerBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="Process Hacker"/>
-                    <Button x:Name="AnyDeskBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="AnyDesk"/>
-                    <Button x:Name="SystemInformerBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="System Informer"/>
-                </StackPanel>
+                        <Button x:Name="PrefetchBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="Open Prefetch" Background="#1E8C4A" Foreground="White"/>
+                        <Button x:Name="ProcessHackerBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="Process Hacker" Background="#1E8C4A" Foreground="White"/>
+                        <Button x:Name="AnyDeskBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="AnyDesk" Background="#1E8C4A" Foreground="White"/>
+                        <Button x:Name="SystemInformerBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="System Informer" Background="#1E8C4A" Foreground="White"/>
+                    </StackPanel>
+                </ScrollViewer>
             </Grid>
 
             <!-- Console -->
