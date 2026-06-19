@@ -84,38 +84,4 @@ Add-Type -AssemblyName System.Windows.Forms
 "@
 
 $reader = New-Object System.Xml.XmlNodeReader $xaml
-$window = [Windows.Markup.XamlReader]::Load($reader)
-
-$CloseBtn = $window.FindName("CloseBtn")
-$CheesyBtn = $window.FindName("CheesyBtn")
-$TeslaBtn = $window.FindName("TeslaBtn")
-$ProcessHackerBtn = $window.FindName("ProcessHackerBtn")
-$AnyDeskBtn = $window.FindName("AnyDeskBtn")
-$SystemInformerBtn = $window.FindName("SystemInformerBtn")
-$ConsoleBox = $window.FindName("ConsoleBox")
-$OpenFolderBtn = $window.FindName("OpenFolderBtn")
-$ClearBtn = $window.FindName("ClearBtn")
-$OpenCmdBtn = $window.FindName("OpenCmdBtn")
-
-function Write-Console($msg) {
-    $time = Get-Date -Format "HH:mm:ss"
-    $ConsoleBox.Dispatcher.Invoke({
-        $ConsoleBox.AppendText("[$time] $msg`r`n")
-        $ConsoleBox.ScrollToEnd()
-    })
-}
-
-# Acties
-$CheesyBtn.Add_Click({ Write-Console "CheesySS Tools starten..."; Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "Invoke-Expression (Invoke-RestMethod ''https://raw.githubusercontent.com/cheesecatlol/CheesySSTool/refs/heads/main/CheesySSTool.ps1'')" ' })
-$TeslaBtn.Add_Click({ Write-Console "TeslaPro Tools starten..."; Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "irm ''https://raw.githubusercontent.com/TeslaPros/TeslaPro-s-SS-Tools/main/installer.ps1'' | iex"' })
-$ClearBtn.Add_Click({ Write-Console "Prefetch map geopend..."; Start-Process explorer.exe -ArgumentList "C:\Windows\Prefetch" })
-$ProcessHackerBtn.Add_Click({ Write-Console "Process Hacker geopend..."; Start-Process "https://processhacker.sourceforge.io/downloads.php" })
-$AnyDeskBtn.Add_Click({ Write-Console "AnyDesk geopend..."; Start-Process "https://anydesk.com/nl/downloads" })
-$SystemInformerBtn.Add_Click({ Write-Console "System Informer geopend..."; Start-Process "https://systeminformer.com/canary" })
-
-$CloseBtn.Add_Click({ $window.Close() })
-$OpenFolderBtn.Add_Click({ explorer . })
-$OpenCmdBtn.Add_Click({ Start-Process cmd.exe })
-
-Write-Console "GuiSS Tools Launcher gestart."
-$window.ShowDialog() | Out-Null
+$window = [Windows.Markup
