@@ -1,5 +1,5 @@
 # ================================================
-#   GuiSS Tools Launcher - Scroll + Linker Knoppen
+#   GuiSS Tools Launcher - Scroll Links + Prefetch
 # ================================================
 
 Add-Type -AssemblyName PresentationFramework
@@ -40,38 +40,37 @@ Add-Type -AssemblyName System.Windows.Forms
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="280"/>
+                    <ColumnDefinition Width="290"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Linker Sidebar met knoppen -->
-                <Border Grid.Column="0" Background="#0A3D1F" BorderBrush="#1E8C4A" BorderThickness="0,0,1,0" CornerRadius="8">
-                    <StackPanel Margin="25,35,20,20">
-                        <TextBlock Text="GuiSS Tools" FontSize="24" FontWeight="Bold" Foreground="#A8FFCC" Margin="0,0,0,30"/>
-                        <TextBlock Text="ACTIONS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,0,0,10"/>
-                        
-                        <Button x:Name="OpenFolderBtn" Content=" Open Install Folder" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
-                        <Button x:Name="ClearBtn" Content=" Clear Downloaded Files" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
-                        <Button x:Name="OpenCmdBtn" Content=" Open CMD" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
+                <!-- Linker Sidebar met Scroll -->
+                <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="0,0,10,0">
+                    <Border Background="#0A3D1F" BorderBrush="#1E8C4A" BorderThickness="0,0,1,0" CornerRadius="8" Padding="20">
+                        <StackPanel>
+                            <TextBlock Text="GuiSS Tools" FontSize="24" FontWeight="Bold" Foreground="#A8FFCC" Margin="0,0,0,30"/>
+                            <TextBlock Text="ACTIONS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,0,0,10"/>
+                            
+                            <Button x:Name="OpenFolderBtn" Content=" Open Install Folder" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
+                            <Button x:Name="ClearBtn" Content=" Open Prefetch Folder" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
+                            <Button x:Name="OpenCmdBtn" Content=" Open CMD" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5"/>
 
-                        <TextBlock Text="TOOLS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,30,0,10"/>
+                            <TextBlock Text="TOOLS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,30,0,10"/>
 
-                        <Button x:Name="CheesyBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Start CheesySS Tools"/>
-                        <Button x:Name="TeslaBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Start TeslaPro SS Tools"/>
-                        <Button x:Name="PrefetchBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Open Prefetch"/>
-                        <Button x:Name="ProcessHackerBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Process Hacker"/>
-                        <Button x:Name="AnyDeskBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="AnyDesk"/>
-                        <Button x:Name="SystemInformerBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="System Informer"/>
-                    </StackPanel>
-                </Border>
-
-                <!-- Main Content with Scroll -->
-                <ScrollViewer Grid.Column="1" Margin="30,35,40,30" VerticalScrollBarVisibility="Auto">
-                    <StackPanel>
-                        <TextBlock Text="Ready" FontSize="28" FontWeight="SemiBold" Foreground="#C5FFDD"/>
-                        <TextBlock Text="Select a tool to launch" FontSize="13" Foreground="#8CFFBB" Margin="0,5,0,30"/>
-                    </StackPanel>
+                            <Button x:Name="CheesyBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Start CheesySS Tools"/>
+                            <Button x:Name="TeslaBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Start TeslaPro SS Tools"/>
+                            <Button x:Name="ProcessHackerBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Process Hacker"/>
+                            <Button x:Name="AnyDeskBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="AnyDesk"/>
+                            <Button x:Name="SystemInformerBtn" Height="50" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="System Informer"/>
+                        </StackPanel>
+                    </Border>
                 </ScrollViewer>
+
+                <!-- Main Area -->
+                <StackPanel Grid.Column="1" Margin="30,35,40,30">
+                    <TextBlock Text="Ready" FontSize="28" FontWeight="SemiBold" Foreground="#C5FFDD"/>
+                    <TextBlock Text="Select a tool to launch" FontSize="13" Foreground="#8CFFBB" Margin="0,5,0,30"/>
+                </StackPanel>
             </Grid>
 
             <!-- Console -->
@@ -92,7 +91,6 @@ $window = [Windows.Markup.XamlReader]::Load($reader)
 $CloseBtn = $window.FindName("CloseBtn")
 $CheesyBtn = $window.FindName("CheesyBtn")
 $TeslaBtn = $window.FindName("TeslaBtn")
-$PrefetchBtn = $window.FindName("PrefetchBtn")
 $ProcessHackerBtn = $window.FindName("ProcessHackerBtn")
 $AnyDeskBtn = $window.FindName("AnyDeskBtn")
 $SystemInformerBtn = $window.FindName("SystemInformerBtn")
@@ -112,14 +110,13 @@ function Write-Console($msg) {
 # Acties
 $CheesyBtn.Add_Click({ Write-Console "CheesySS Tools starten..."; Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "Invoke-Expression (Invoke-RestMethod ''https://raw.githubusercontent.com/cheesecatlol/CheesySSTool/refs/heads/main/CheesySSTool.ps1'')" ' })
 $TeslaBtn.Add_Click({ Write-Console "TeslaPro Tools starten..."; Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "irm ''https://raw.githubusercontent.com/TeslaPros/TeslaPro-s-SS-Tools/main/installer.ps1'' | iex"' })
-$PrefetchBtn.Add_Click({ Write-Console "Prefetch map geopend..."; Start-Process explorer.exe -ArgumentList "C:\Windows\Prefetch" })
+$ClearBtn.Add_Click({ Write-Console "Prefetch map geopend..."; Start-Process explorer.exe -ArgumentList "C:\Windows\Prefetch" })
 $ProcessHackerBtn.Add_Click({ Write-Console "Process Hacker geopend..."; Start-Process "https://processhacker.sourceforge.io/downloads.php" })
 $AnyDeskBtn.Add_Click({ Write-Console "AnyDesk geopend..."; Start-Process "https://anydesk.com/nl/downloads" })
 $SystemInformerBtn.Add_Click({ Write-Console "System Informer geopend..."; Start-Process "https://systeminformer.com/canary" })
 
 $CloseBtn.Add_Click({ $window.Close() })
 $OpenFolderBtn.Add_Click({ explorer . })
-$ClearBtn.Add_Click({ Write-Console "Download map gewist." })
 $OpenCmdBtn.Add_Click({ Start-Process cmd.exe })
 
 Write-Console "GuiSS Tools Launcher gestart."
