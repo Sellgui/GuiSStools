@@ -1,5 +1,5 @@
 # ================================================
-#   GuiSS Tools Launcher - Groene Thema
+#   GuiSS Tools Launcher - Donker Groen + Smalle Knoppen
 # ================================================
 
 Add-Type -AssemblyName PresentationFramework
@@ -23,7 +23,7 @@ Add-Type -AssemblyName System.Windows.Forms
     Background="Transparent"
     FontFamily="Segoe UI">
 
-    <Border Background="#0A3D1F" CornerRadius="10" BorderBrush="#1E8C4A" BorderThickness="2">   <!-- Donker Groen -->
+    <Border Background="#0A3D1F" CornerRadius="10" BorderBrush="#1E8C4A" BorderThickness="2">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"/>
@@ -57,27 +57,25 @@ Add-Type -AssemblyName System.Windows.Forms
                 </Border>
 
                 <!-- Main Area -->
-                <StackPanel Grid.Column="1" Margin="30,35,40,30">
+                <StackPanel Grid.Column="1" Margin="40,35,40,30">
                     <TextBlock Text="Ready" FontSize="28" FontWeight="SemiBold" Foreground="#C5FFDD"/>
-                    <TextBlock Text="Select a tool to launch" FontSize="13" Foreground="#8CFFBB" Margin="0,5,0,25"/>
+                    <TextBlock Text="Select a tool to launch" FontSize="13" Foreground="#8CFFBB" Margin="0,5,0,30"/>
 
-                    <!-- CheesySS -->
-                    <Button x:Name="CheesyBtn" Height="58" Margin="0,8" Background="#E6B800" Foreground="#0F2A00" FontSize="16" FontWeight="Bold" Content="Start CheesySS Tools"/>
-
-                    <!-- TeslaPro -->
-                    <Button x:Name="TeslaBtn" Height="58" Margin="0,8" Background="#0088FF" Foreground="White" FontSize="16" FontWeight="Bold" Content="Start TeslaPro SS Tools"/>
+                    <!-- Hoofd knoppen - smaller -->
+                    <Button x:Name="CheesyBtn" Height="58" Width="680" Margin="0,8" Background="#E6B800" Foreground="#0F2A00" FontSize="16" FontWeight="Bold" Content="Start CheesySS Tools" HorizontalAlignment="Left"/>
+                    <Button x:Name="TeslaBtn" Height="58" Width="680" Margin="0,8" Background="#0088FF" Foreground="White" FontSize="16" FontWeight="Bold" Content="Start TeslaPro SS Tools" HorizontalAlignment="Left"/>
 
                     <!-- Extra Tools -->
-                    <TextBlock Text="Extra Tools" FontSize="14" FontWeight="SemiBold" Foreground="#C5FFDD" Margin="0,25,0,12"/>
+                    <TextBlock Text="Extra Tools" FontSize="14" FontWeight="SemiBold" Foreground="#C5FFDD" Margin="0,30,0,12"/>
 
-                    <Button x:Name="ProcessHackerBtn" Height="52" Margin="0,6" Background="#FF4444" Foreground="White" FontSize="15" FontWeight="Bold" Content="Process Hacker"/>
-                    <Button x:Name="AnyDeskBtn" Height="52" Margin="0,6" Background="#00C853" Foreground="White" FontSize="15" FontWeight="Bold" Content="AnyDesk"/>
-                    <Button x:Name="SystemInformerBtn" Height="52" Margin="0,6" Background="#9C27B0" Foreground="White" FontSize="15" FontWeight="Bold" Content="System Informer"/>
+                    <Button x:Name="ProcessHackerBtn" Height="50" Width="680" Margin="0,6" Background="#FF4444" Foreground="White" FontSize="15" FontWeight="Bold" Content="Process Hacker" HorizontalAlignment="Left"/>
+                    <Button x:Name="AnyDeskBtn" Height="50" Width="680" Margin="0,6" Background="#00C853" Foreground="White" FontSize="15" FontWeight="Bold" Content="AnyDesk" HorizontalAlignment="Left"/>
+                    <Button x:Name="SystemInformerBtn" Height="50" Width="680" Margin="0,6" Background="#9C27B0" Foreground="White" FontSize="15" FontWeight="Bold" Content="System Informer" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
 
-            <!-- Console -->
-            <Border Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Height="160" Background="#041F10" BorderBrush="#1E8C4A" BorderThickness="0,1,0,0">
+            <!-- Console - Donker Groen -->
+            <Border Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Height="155" Background="#041F10" BorderBrush="#1E8C4A" BorderThickness="0,1,0,0">
                 <Grid Margin="30,12">
                     <TextBlock Text="ACTIVITY CONSOLE" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,0,0,6"/>
                     <TextBox x:Name="ConsoleBox" Background="Transparent" Foreground="#A8FFCC" FontFamily="Consolas" FontSize="11" IsReadOnly="True" VerticalScrollBarVisibility="Auto" BorderThickness="0"/>
@@ -91,7 +89,6 @@ Add-Type -AssemblyName System.Windows.Forms
 $reader = New-Object System.Xml.XmlNodeReader $xaml
 $window = [Windows.Markup.XamlReader]::Load($reader)
 
-# Naam vinden
 $CloseBtn = $window.FindName("CloseBtn")
 $CheesyBtn = $window.FindName("CheesyBtn")
 $TeslaBtn = $window.FindName("TeslaBtn")
@@ -111,31 +108,12 @@ function Write-Console($msg) {
     })
 }
 
-# Acties
-$CheesyBtn.Add_Click({ 
-    Write-Console "CheesySS Tools starten..."
-    Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "Invoke-Expression (Invoke-RestMethod ''https://raw.githubusercontent.com/cheesecatlol/CheesySSTool/refs/heads/main/CheesySSTool.ps1'')"'
-})
-
-$TeslaBtn.Add_Click({ 
-    Write-Console "TeslaPro Tools starten..."
-    Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "irm ''https://raw.githubusercontent.com/TeslaPros/TeslaPro-s-SS-Tools/main/installer.ps1'' | iex"'
-})
-
-$ProcessHackerBtn.Add_Click({
-    Write-Console "Process Hacker download geopend..."
-    Start-Process "https://processhacker.sourceforge.io/downloads.php"
-})
-
-$AnyDeskBtn.Add_Click({
-    Write-Console "AnyDesk download geopend..."
-    Start-Process "https://anydesk.com/nl/downloads"
-})
-
-$SystemInformerBtn.Add_Click({
-    Write-Console "System Informer download geopend..."
-    Start-Process "https://www.systeminformer.com/downloads"
-})
+# Knop acties
+$CheesyBtn.Add_Click({ Write-Console "CheesySS Tools starten..."; Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "Invoke-Expression (Invoke-RestMethod ''https://raw.githubusercontent.com/cheesecatlol/CheesySSTool/refs/heads/main/CheesySSTool.ps1'')" ' })
+$TeslaBtn.Add_Click({ Write-Console "TeslaPro Tools starten..."; Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "irm ''https://raw.githubusercontent.com/TeslaPros/TeslaPro-s-SS-Tools/main/installer.ps1'' | iex"' })
+$ProcessHackerBtn.Add_Click({ Write-Console "Process Hacker download geopend..."; Start-Process "https://processhacker.sourceforge.io/downloads.php" })
+$AnyDeskBtn.Add_Click({ Write-Console "AnyDesk download geopend..."; Start-Process "https://anydesk.com/nl/downloads" })
+$SystemInformerBtn.Add_Click({ Write-Console "System Informer download geopend..."; Start-Process "https://www.systeminformer.com/downloads" })
 
 $CloseBtn.Add_Click({ $window.Close() })
 $OpenFolderBtn.Add_Click({ explorer . })
