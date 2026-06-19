@@ -1,91 +1,129 @@
 # ================================================
-#   GuiSS Tools Launcher - Aangepaste versie
+#   GuiSS Tools Launcher - CheesySS Style
 # ================================================
 
-Clear-Host
-$host.UI.RawUI.WindowTitle = "GuiSS Tools Launcher"
-
+Add-Type -AssemblyName PresentationFramework
+Add-Type -AssemblyName PresentationCore
+Add-Type -AssemblyName WindowsBase
+Add-Type -AssemblyName System.Xaml
 Add-Type -AssemblyName System.Windows.Forms
-Add-Type -AssemblyName System.Drawing
 
-$form = New-Object System.Windows.Forms.Form
-$form.Text = "GuiSS Tools Launcher"
-$form.Size = New-Object System.Drawing.Size(1180, 720)
-$form.StartPosition = "CenterScreen"
-$form.BackColor = [System.Drawing.Color]::FromArgb(20, 20, 20)
-$form.FormBorderStyle = "FixedSingle"
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-# Sidebar
-$sidebar = New-Object System.Windows.Forms.Panel
-$sidebar.Size = New-Object System.Drawing.Size(260, 660)
-$sidebar.Location = New-Object System.Drawing.Point(12, 12)
-$sidebar.BackColor = [System.Drawing.Color]::FromArgb(15, 15, 15)
-$form.Controls.Add($sidebar)
+# XAML - Gebaseerd op CheesySS stijl
+[xml]$xaml = @"
+<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="GuiSS Tools Launcher"
+    Width="1180" Height="740"
+    WindowStartupLocation="CenterScreen"
+    ResizeMode="NoResize"
+    WindowStyle="None"
+    AllowsTransparency="True"
+    Background="Transparent"
+    FontFamily="Segoe UI">
 
-$title = New-Object System.Windows.Forms.Label
-$title.Text = "GuiSS Tools"
-$title.Font = New-Object System.Drawing.Font("Segoe UI", 22, [System.Drawing.FontStyle]::Bold)
-$title.ForeColor = [System.Drawing.Color]::FromArgb(0, 255, 200)
-$title.Location = New-Object System.Drawing.Point(25, 25)
-$sidebar.Controls.Add($title)
+    <Border Background="#0F0B00" BorderBrush="#3D2E00" BorderThickness="1" CornerRadius="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-# Actions
-$act = New-Object System.Windows.Forms.Label; $act.Text = "ACTIONS"; $act.ForeColor = "Gray"; $act.Location = New-Object System.Drawing.Point(25, 110); $sidebar.Controls.Add($act)
+            <!-- Title Bar -->
+            <Border Grid.Row="0" Background="#1A1200" CornerRadius="10,10,0,0">
+                <Grid>
+                    <TextBlock Text="GuiSS Tools Launcher" Margin="20,0,0,0" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" Foreground="#FFF4C8"/>
+                    <Button x:Name="CloseBtn" Content="✕" Width="40" Height="30" HorizontalAlignment="Right" Background="Transparent" Foreground="#907830" BorderThickness="0" FontSize="14" Margin="0,0,10,0"/>
+                </Grid>
+            </Border>
 
-$btn1 = New-Object System.Windows.Forms.Button; $btn1.Text = "Open Install Folder"; $btn1.Size = New-Object System.Drawing.Size(205, 35); $btn1.Location = New-Object System.Drawing.Point(25, 140); $btn1.BackColor = [System.Drawing.Color]::FromArgb(45,45,45); $btn1.ForeColor = "White"; $btn1.FlatStyle = "Flat"; $btn1.Add_Click({explorer .}); $sidebar.Controls.Add($btn1)
-$btn2 = New-Object System.Windows.Forms.Button; $btn2.Text = "Clear Downloaded Files"; $btn2.Size = New-Object System.Drawing.Size(205, 35); $btn2.Location = New-Object System.Drawing.Point(25, 180); $btn2.BackColor = [System.Drawing.Color]::FromArgb(45,45,45); $btn2.ForeColor = "White"; $btn2.FlatStyle = "Flat"; $btn2.Add_Click({[System.Windows.Forms.MessageBox]::Show("Nog niet geïmplementeerd","Info")}); $sidebar.Controls.Add($btn2)
-$btn3 = New-Object System.Windows.Forms.Button; $btn3.Text = "Open CMD"; $btn3.Size = New-Object System.Drawing.Size(205, 35); $btn3.Location = New-Object System.Drawing.Point(25, 220); $btn3.BackColor = [System.Drawing.Color]::FromArgb(45,45,45); $btn3.ForeColor = "White"; $btn3.FlatStyle = "Flat"; $btn3.Add_Click({Start-Process cmd}); $sidebar.Controls.Add($btn3)
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="240"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-# Hoofd paneel
-$main = New-Object System.Windows.Forms.Panel
-$main.Size = New-Object System.Drawing.Size(880, 660)
-$main.Location = New-Object System.Drawing.Point(285, 12)
-$main.BackColor = [System.Drawing.Color]::FromArgb(25, 25, 25)
-$form.Controls.Add($main)
+                <!-- Sidebar -->
+                <Border Grid.Column="0" Background="#1A1200" BorderBrush="#3D2E00" BorderThickness="0,0,1,0">
+                    <StackPanel Margin="20,30,20,20">
+                        <TextBlock Text="GuiSS Tools" FontSize="22" FontWeight="Bold" Foreground="#F5C200" Margin="0,0,0,25"/>
+                        <TextBlock Text="ACTIONS" FontSize="9" FontWeight="Bold" Foreground="#907830" Margin="4,0,0,8"/>
+                        
+                        <Button x:Name="OpenFolderBtn" Content=" Open Install Folder" Height="38" Background="Transparent" Foreground="#FFF4C8" HorizontalContentAlignment="Left" Margin="0,2"/>
+                        <Button x:Name="ClearBtn" Content=" Clear Downloaded Files" Height="38" Background="Transparent" Foreground="#FFF4C8" HorizontalContentAlignment="Left" Margin="0,2"/>
+                        <Button x:Name="OpenCmdBtn" Content=" Open CMD" Height="38" Background="Transparent" Foreground="#FFF4C8" HorizontalContentAlignment="Left" Margin="0,2"/>
+                    </StackPanel>
+                </Border>
 
-$ready = New-Object System.Windows.Forms.Label; $ready.Text = "Ready - Select a tool to launch"; $ready.Font = New-Object System.Drawing.Font("Segoe UI", 14, [System.Drawing.FontStyle]::Bold); $ready.ForeColor = "White"; $ready.Location = New-Object System.Drawing.Point(30, 25); $main.Controls.Add($ready)
+                <!-- Main Content -->
+                <Grid Grid.Column="1" Margin="25,25,25,25">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-# Kleine Cheesy knop (geel)
-$cheesyBtn = New-Object System.Windows.Forms.Button
-$cheesyBtn.Text = "🐱 Start CheesySS Tools"
-$cheesyBtn.Size = New-Object System.Drawing.Size(800, 55)
-$cheesyBtn.Location = New-Object System.Drawing.Point(30, 80)
-$cheesyBtn.BackColor = [System.Drawing.Color]::FromArgb(255, 200, 0)   # Geel
-$cheesyBtn.ForeColor = "Black"
-$cheesyBtn.Font = New-Object System.Drawing.Font("Segoe UI", 14, [System.Drawing.FontStyle]::Bold)
-$main.Controls.Add($cheesyBtn)
+                    <TextBlock Grid.Row="0" Text="Ready" FontSize="26" FontWeight="SemiBold" Foreground="#FFF4C8"/>
+                    <TextBlock Grid.Row="1" Text="Select a tool to launch" FontSize="12" Foreground="#907830" Margin="0,5,0,20"/>
 
-# Kleine Tesla knop (blauw)
-$teslaBtn = New-Object System.Windows.Forms.Button
-$teslaBtn.Text = "⚡ Start TeslaPro SS Tools"
-$teslaBtn.Size = New-Object System.Drawing.Size(800, 55)
-$teslaBtn.Location = New-Object System.Drawing.Point(30, 145)
-$teslaBtn.BackColor = [System.Drawing.Color]::FromArgb(0, 120, 215)   # Blauw
-$teslaBtn.ForeColor = "White"
-$teslaBtn.Font = New-Object System.Drawing.Font("Segoe UI", 14, [System.Drawing.FontStyle]::Bold)
-$main.Controls.Add($teslaBtn)
+                    <!-- CheesySS Knop (Geel) -->
+                    <Button x:Name="CheesyBtn" Grid.Row="2" Height="75" Margin="0,0,0,15" Background="#F5C200" Foreground="#0F0B00" FontSize="18" FontWeight="Bold" Content="🐱 Start CheesySS Tools"/>
 
-# Kleinere Console
-$console = New-Object System.Windows.Forms.TextBox
-$console.Multiline = $true
-$console.ScrollBars = "Vertical"
-$console.Size = New-Object System.Drawing.Size(800, 180)
-$console.Location = New-Object System.Drawing.Point(30, 230)
-$console.BackColor = [System.Drawing.Color]::Black
-$console.ForeColor = [System.Drawing.Color]::Lime
-$console.Font = New-Object System.Drawing.Font("Consolas", 9.5)
-$console.Text = "Activity Console`nReady...`n"
-$main.Controls.Add($console)
+                    <!-- TeslaPro Knop (Blauw) -->
+                    <Button x:Name="TeslaBtn" Grid.Row="3" Height="70" Background="#0A84FF" Foreground="White" FontSize="17" FontWeight="Bold" Content="⚡ Start TeslaPro SS Tools"/>
+                </Grid>
+            </Grid>
 
-# Acties
-$cheesyBtn.Add_Click({
-    $console.AppendText("`n[CheesySS] Tool wordt gestart...`n")
+            <!-- Console -->
+            <Border Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Height="170" Background="#060400" BorderBrush="#3D2E00" BorderThickness="0,1,0,0" Margin="0,0,0,0">
+                <Grid Margin="25,10">
+                    <TextBlock Text="ACTIVITY CONSOLE" FontSize="9" FontWeight="Bold" Foreground="#5A4010" Margin="0,0,0,5"/>
+                    <TextBox x:Name="ConsoleBox" Background="Transparent" Foreground="#F5C200" FontFamily="Consolas" FontSize="11" IsReadOnly="True" VerticalScrollBarVisibility="Auto" BorderThickness="0"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>
+"@
+
+$reader = New-Object System.Xml.XmlNodeReader $xaml
+$window = [Windows.Markup.XamlReader]::Load($reader)
+
+$CloseBtn = $window.FindName("CloseBtn")
+$CheesyBtn = $window.FindName("CheesyBtn")
+$TeslaBtn = $window.FindName("TeslaBtn")
+$ConsoleBox = $window.FindName("ConsoleBox")
+$OpenFolderBtn = $window.FindName("OpenFolderBtn")
+$ClearBtn = $window.FindName("ClearBtn")
+$OpenCmdBtn = $window.FindName("OpenCmdBtn")
+
+function Write-Console {
+    param([string]$Message)
+    $time = Get-Date -Format "HH:mm:ss"
+    $ConsoleBox.Dispatcher.Invoke({
+        $ConsoleBox.AppendText("[$time] $Message`r`n")
+        $ConsoleBox.ScrollToEnd()
+    })
+}
+
+# Knop acties
+$CheesyBtn.Add_Click({
+    Write-Console "CheesySS Tools starten..."
     Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "Invoke-Expression (Invoke-RestMethod ''https://raw.githubusercontent.com/cheesecatlol/CheesySSTool/refs/heads/main/CheesySSTool.ps1'')"'
 })
 
-$teslaBtn.Add_Click({
-    $console.AppendText("`n[TeslaPro] Tools worden gestart...`n")
+$TeslaBtn.Add_Click({
+    Write-Console "TeslaPro SS Tools starten..."
     Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "irm ''https://raw.githubusercontent.com/TeslaPros/TeslaPro-s-SS-Tools/main/installer.ps1'' | iex"'
 })
 
-$form.ShowDialog() | Out-Null
+$CloseBtn.Add_Click({ $window.Close() })
+$OpenFolderBtn.Add_Click({ explorer . })
+$ClearBtn.Add_Click({ Write-Console "Clear functie nog niet actief." })
+$OpenCmdBtn.Add_Click({ Start-Process cmd })
+
+Write-Console "GuiSS Tools Launcher gestart."
+$window.ShowDialog() | Out-Null
