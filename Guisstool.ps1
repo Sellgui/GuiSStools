@@ -1,5 +1,5 @@
 # ================================================
-#   GuiSS Tools Launcher - Gradient Groen + Ronde Knoppen
+#   GuiSS Tools Launcher - Ronde Knoppen (geen rand)
 # ================================================
 
 Add-Type -AssemblyName PresentationFramework
@@ -50,19 +50,18 @@ Add-Type -AssemblyName System.Windows.Forms
                         <TextBlock Text="GuiSS Tools" FontSize="24" FontWeight="Bold" Foreground="#A8FFCC" Margin="0,0,0,30"/>
                         <TextBlock Text="ACTIONS" FontSize="9" FontWeight="Bold" Foreground="#6BFF9E" Margin="0,0,0,10"/>
                         
-                        <Button x:Name="OpenFolderBtn" Content=" Open Install Folder" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5" CornerRadius="6"/>
-                        <Button x:Name="ClearBtn" Content=" Clear Downloaded Files" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5" CornerRadius="6"/>
-                        <Button x:Name="OpenCmdBtn" Content=" Open CMD" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5" CornerRadius="6"/>
+                        <Button x:Name="OpenFolderBtn" Content=" Open Install Folder" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5" CornerRadius="8"/>
+                        <Button x:Name="ClearBtn" Content=" Clear Downloaded Files" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5" CornerRadius="8"/>
+                        <Button x:Name="OpenCmdBtn" Content=" Open CMD" Height="42" Background="#1E8C4A" Foreground="White" Margin="0,5" CornerRadius="8"/>
                     </StackPanel>
                 </Border>
 
-                <!-- Main Content -->
+                <!-- Main Area -->
                 <StackPanel Grid.Column="1" Margin="35,35,40,30">
                     <TextBlock Text="Ready" FontSize="28" FontWeight="SemiBold" Foreground="#C5FFDD"/>
                     <TextBlock Text="Select a tool to launch" FontSize="13" Foreground="#8CFFBB" Margin="0,5,0,30"/>
 
-                    <!-- Knoppen met gradient donker -> licht groen -->
-                    <Button x:Name="CheesyBtn" Height="62" Margin="0,8" FontSize="16" FontWeight="Bold" Content="Start CheesySS Tools" CornerRadius="8">
+                    <Button x:Name="CheesyBtn" Height="62" Margin="0,8" FontSize="16" FontWeight="Bold" Content="Start CheesySS Tools" CornerRadius="10">
                         <Button.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                 <GradientStop Color="#1E8C4A" Offset="0"/>
@@ -71,7 +70,7 @@ Add-Type -AssemblyName System.Windows.Forms
                         </Button.Background>
                     </Button>
 
-                    <Button x:Name="TeslaBtn" Height="62" Margin="0,8" FontSize="16" FontWeight="Bold" Content="Start TeslaPro SS Tools" CornerRadius="8">
+                    <Button x:Name="TeslaBtn" Height="62" Margin="0,8" FontSize="16" FontWeight="Bold" Content="Start TeslaPro SS Tools" CornerRadius="10">
                         <Button.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                 <GradientStop Color="#1E8C4A" Offset="0"/>
@@ -82,7 +81,7 @@ Add-Type -AssemblyName System.Windows.Forms
 
                     <TextBlock Text="Extra Tools" FontSize="14" FontWeight="SemiBold" Foreground="#C5FFDD" Margin="0,30,0,12"/>
 
-                    <Button x:Name="PrefetchBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="Open Prefetch" CornerRadius="8">
+                    <Button x:Name="PrefetchBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="Open Prefetch" CornerRadius="10">
                         <Button.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                 <GradientStop Color="#1E8C4A" Offset="0"/>
@@ -91,7 +90,7 @@ Add-Type -AssemblyName System.Windows.Forms
                         </Button.Background>
                     </Button>
 
-                    <Button x:Name="ProcessHackerBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="Process Hacker" CornerRadius="8">
+                    <Button x:Name="ProcessHackerBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="Process Hacker" CornerRadius="10">
                         <Button.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                 <GradientStop Color="#1E8C4A" Offset="0"/>
@@ -100,7 +99,7 @@ Add-Type -AssemblyName System.Windows.Forms
                         </Button.Background>
                     </Button>
 
-                    <Button x:Name="AnyDeskBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="AnyDesk" CornerRadius="8">
+                    <Button x:Name="AnyDeskBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="AnyDesk" CornerRadius="10">
                         <Button.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                 <GradientStop Color="#1E8C4A" Offset="0"/>
@@ -109,7 +108,7 @@ Add-Type -AssemblyName System.Windows.Forms
                         </Button.Background>
                     </Button>
 
-                    <Button x:Name="SystemInformerBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="System Informer" CornerRadius="8">
+                    <Button x:Name="SystemInformerBtn" Height="52" Margin="0,6" FontSize="15" FontWeight="Bold" Content="System Informer" CornerRadius="10">
                         <Button.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                 <GradientStop Color="#1E8C4A" Offset="0"/>
