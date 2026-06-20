@@ -1,5 +1,5 @@
 # ================================================
-#   GuiSS Tools Launcher - Simpele Stabiele Versie
+#   GuiSS Tools Launcher - Simpele WinForms Versie
 # ================================================
 
 Add-Type -AssemblyName System.Windows.Forms
@@ -7,7 +7,7 @@ Add-Type -AssemblyName System.Drawing
 
 $form = New-Object System.Windows.Forms.Form
 $form.Text = "GuiSS Tools Launcher"
-$form.Size = New-Object System.Drawing.Size(1050, 620)
+$form.Size = New-Object System.Drawing.Size(1100, 680)
 $form.StartPosition = "CenterScreen"
 $form.BackColor = [System.Drawing.Color]::FromArgb(10, 61, 31)
 $form.Font = New-Object System.Drawing.Font("Segoe UI", 10)
