@@ -1,101 +1,86 @@
 # ================================================
-#   GuiSS Tools Launcher - TeslaPro Style (aangepast)
+#   GuiSS Tools Launcher - Stabiele WinForms Versie
 # ================================================
 
-[CmdletBinding()]
-param([switch]$SelfTest)
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
 
-Set-StrictMode -Version Latest
-$ErrorActionPreference = "Stop"
+$form = New-Object System.Windows.Forms.Form
+$form.Text = "GuiSS Tools Launcher"
+$form.Size = New-Object System.Drawing.Size(1200, 720)
+$form.StartPosition = "CenterScreen"
+$form.BackColor = [System.Drawing.Color]::FromArgb(16, 17, 22)
+$form.Font = New-Object System.Drawing.Font("Segoe UI", 10)
+$form.FormBorderStyle = "FixedSingle"
+$form.MaximizeBox = $false
 
-if ($PSVersionTable.PSVersion.Major -lt 5) {
-    throw "GuiSS Tools requires Windows PowerShell 5.1 or newer."
+# Title
+$title = New-Object System.Windows.Forms.Label
+$title.Text = "GuiSS Tools Launcher"
+$title.Font = New-Object System.Drawing.Font("Segoe UI", 18, [System.Drawing.FontStyle]::Bold)
+$title.ForeColor = [System.Drawing.Color]::FromArgb(168, 255, 204)
+$title.AutoSize = $true
+$title.Location = New-Object System.Drawing.Point(30, 25)
+$form.Controls.Add($title)
+
+# Status
+$status = New-Object System.Windows.Forms.Label
+$status.Text = "The toolkit is ready on this system."
+$status.ForeColor = [System.Drawing.Color]::FromArgb(140, 255, 187)
+$status.Location = New-Object System.Drawing.Point(30, 65)
+$status.AutoSize = $true
+$form.Controls.Add($status)
+
+# Knoppen
+$y = 120
+$buttons = @(
+    @{Text="Start CheesySS Tools"; Action={Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "Invoke-Expression (Invoke-RestMethod ''https://raw.githubusercontent.com/cheesecatlol/CheesySSTool/refs/heads/main/CheesySSTool.ps1'')" ' }},
+    @{Text="Start TeslaPro SS Tools"; Action={Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "irm ''https://raw.githubusercontent.com/TeslaPros/TeslaPro-s-SS-Tools/main/installer.ps1'' | iex"' }},
+    @{Text="Open Prefetch Folder"; Action={Start-Process explorer.exe -ArgumentList "C:\Windows\Prefetch" }},
+    @{Text="Process Hacker"; Action={Start-Process "https://processhacker.sourceforge.io/downloads.php" }},
+    @{Text="AnyDesk"; Action={Start-Process "https://anydesk.com/nl/downloads" }},
+    @{Text="System Informer"; Action={Start-Process "https://systeminformer.com/canary" }}
+)
+
+foreach ($btnInfo in $buttons) {
+    $btn = New-Object System.Windows.Forms.Button
+    $btn.Text = $btnInfo.Text
+    $btn.Size = New-Object System.Drawing.Size(420, 52)
+    $btn.Location = New-Object System.Drawing.Point(30, $y)
+    $btn.BackColor = [System.Drawing.Color]::FromArgb(30, 140, 74)
+    $btn.ForeColor = [System.Drawing.Color]::White
+    $btn.FlatStyle = "Flat"
+    $btn.FlatAppearance.BorderSize = 0
+    $btn.Font = New-Object System.Drawing.Font("Segoe UI", 12, [System.Drawing.FontStyle]::Bold)
+    $btn.Add_Click($btnInfo.Action)
+    $form.Controls.Add($btn)
+    $y += 65
 }
 
-Add-Type -AssemblyName PresentationFramework
-Add-Type -AssemblyName PresentationCore
-Add-Type -AssemblyName WindowsBase
-Add-Type -AssemblyName System.Xaml
-Add-Type -AssemblyName System.Windows.Forms
+# Console
+$consoleLabel = New-Object System.Windows.Forms.Label
+$consoleLabel.Text = "Activity Console"
+$consoleLabel.ForeColor = [System.Drawing.Color]::FromArgb(168, 255, 204)
+$consoleLabel.Location = New-Object System.Drawing.Point(520, 25)
+$consoleLabel.AutoSize = $true
+$form.Controls.Add($consoleLabel)
 
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$console = New-Object System.Windows.Forms.TextBox
+$console.Location = New-Object System.Drawing.Point(520, 55)
+$console.Size = New-Object System.Drawing.Size(640, 580)
+$console.BackColor = [System.Drawing.Color]::FromArgb(16, 17, 22)
+$console.ForeColor = [System.Drawing.Color]::FromArgb(160, 232, 192)
+$console.Font = New-Object System.Drawing.Font("Consolas", 11)
+$console.Multiline = $true
+$console.ScrollBars = "Vertical"
+$console.ReadOnly = $true
+$form.Controls.Add($console)
 
-[xml]$xaml = @'
-<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="GuiSS Tools Launcher"
-        Width="1240"
-        Height="800"
-        MinWidth="980"
-        MinHeight="640"
-        WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
-        ResizeMode="CanResize"
-        Background="#101116"
-        FontFamily="Segoe UI Variable, Segoe UI"
-        Foreground="#F6F7FB">
+function Write-Console($msg) {
+    $time = Get-Date -Format "HH:mm:ss"
+    $console.AppendText("[$time] $msg`r`n")
+    $console.ScrollToCaret()
+}
 
-    <Window.Resources>
-        <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#101116"/>
-        <SolidColorBrush x:Key="SidebarBrush" Color="#171922"/>
-        <SolidColorBrush x:Key="ContentBrush" Color="#121823"/>
-        <SolidColorBrush x:Key="PanelBrush" Color="#1D202B"/>
-        <SolidColorBrush x:Key="CardBrush" Color="#252936"/>
-        <SolidColorBrush x:Key="CardHoverBrush" Color="#2C3344"/>
-        <SolidColorBrush x:Key="SelectedBrush" Color="#173A55"/>
-        <SolidColorBrush x:Key="AccentBrush" Color="#30A4FF"/>
-        <SolidColorBrush x:Key="MutedBrush" Color="#AEB6C8"/>
-        <SolidColorBrush x:Key="TextBrush" Color="#F6F7FB"/>
-        <SolidColorBrush x:Key="LineBrush" Color="#333A4D"/>
-        <SolidColorBrush x:Key="SuccessBrush" Color="#62C370"/>
-
-        <LinearGradientBrush x:Key="PrimaryGradientBrush" StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="#34D399" Offset="0"/>
-            <GradientStop Color="#1E8C4A" Offset="1"/>
-        </LinearGradientBrush>
-    </Window.Resources>
-
-    <Grid Background="{DynamicResource WindowBackgroundBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Title Bar -->
-        <Border Background="#171922" BorderBrush="#333A4D" BorderThickness="0,0,0,1">
-            <Grid>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
-                    <Border Width="32" Height="32" CornerRadius="8" Background="{DynamicResource PrimaryGradientBrush}">
-                        <TextBlock Text="GS" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#07111C"/>
-                    </Border>
-                    <TextBlock Text="GuiSS Tools Launcher" FontSize="18" FontWeight="SemiBold" Margin="12,0,0,0" VerticalAlignment="Center"/>
-                </StackPanel>
-                <Button x:Name="CloseBtn" Content="✕" Width="40" Height="32" HorizontalAlignment="Right" Background="Transparent" Foreground="#F6F7FB" BorderThickness="0" Margin="0,0,15,0" FontSize="16"/>
-            </Grid>
-        </Border>
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="280"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <!-- Sidebar -->
-            <Border Background="#171922" BorderBrush="#333A4D" BorderThickness="0,0,1,0">
-                <StackPanel Margin="20">
-                    <TextBlock Text="Control Center" FontSize="18" FontWeight="SemiBold" Foreground="#A8FFCC" Margin="0,0,0,20"/>
-                    <TextBlock Text="Launch your tools easily." FontSize="12" Foreground="#8CFFBB" Margin="0,0,0,25"/>
-
-                    <Button x:Name="CheesyBtn" Height="48" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Start CheesySS Tools"/>
-                    <Button x:Name="TeslaBtn" Height="48" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Start TeslaPro SS Tools"/>
-                    <Button x:Name="PrefetchBtn" Height="48" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Open Prefetch"/>
-                    <Button x:Name="ProcessHackerBtn" Height="48" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="Process Hacker"/>
-                    <Button x:Name="AnyDeskBtn" Height="48" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="AnyDesk"/>
-                    <Button x:Name="SystemInformerBtn" Height="48" Margin="0,6" Background="#1E8C4A" Foreground="White" FontSize="14" FontWeight="Bold" Content="System Informer"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Main Content -->
-            <StackPanel Grid.Column="1" Margin="30,30,40,30">
-                <TextBlock Text="Installed" FontSize="22" FontWeight="SemiBold" Foreground="#A8FFCC"/>
-               
+Write-Console "GuiSS Tools Launcher gestart."
+$form.ShowDialog() | Out-Null
