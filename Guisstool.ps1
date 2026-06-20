@@ -1,5 +1,5 @@
 # ================================================
-#   GuiSS Tools Launcher - Stabiele WinForms Versie
+#   GuiSS Tools Launcher - Simpele Stabiele Versie
 # ================================================
 
 Add-Type -AssemblyName System.Windows.Forms
@@ -7,14 +7,11 @@ Add-Type -AssemblyName System.Drawing
 
 $form = New-Object System.Windows.Forms.Form
 $form.Text = "GuiSS Tools Launcher"
-$form.Size = New-Object System.Drawing.Size(1200, 720)
+$form.Size = New-Object System.Drawing.Size(1050, 620)
 $form.StartPosition = "CenterScreen"
-$form.BackColor = [System.Drawing.Color]::FromArgb(16, 17, 22)
+$form.BackColor = [System.Drawing.Color]::FromArgb(10, 61, 31)
 $form.Font = New-Object System.Drawing.Font("Segoe UI", 10)
-$form.FormBorderStyle = "FixedSingle"
-$form.MaximizeBox = $false
 
-# Title
 $title = New-Object System.Windows.Forms.Label
 $title.Text = "GuiSS Tools Launcher"
 $title.Font = New-Object System.Drawing.Font("Segoe UI", 18, [System.Drawing.FontStyle]::Bold)
@@ -23,16 +20,7 @@ $title.AutoSize = $true
 $title.Location = New-Object System.Drawing.Point(30, 25)
 $form.Controls.Add($title)
 
-# Status
-$status = New-Object System.Windows.Forms.Label
-$status.Text = "The toolkit is ready on this system."
-$status.ForeColor = [System.Drawing.Color]::FromArgb(140, 255, 187)
-$status.Location = New-Object System.Drawing.Point(30, 65)
-$status.AutoSize = $true
-$form.Controls.Add($status)
-
-# Knoppen
-$y = 120
+$y = 90
 $buttons = @(
     @{Text="Start CheesySS Tools"; Action={Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -Command "Invoke-Expression (Invoke-RestMethod ''https://raw.githubusercontent.com/cheesecatlol/CheesySSTool/refs/heads/main/CheesySSTool.ps1'')" ' }},
     @{Text="Start TeslaPro SS Tools"; Action={Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "irm ''https://raw.githubusercontent.com/TeslaPros/TeslaPro-s-SS-Tools/main/installer.ps1'' | iex"' }},
@@ -42,22 +30,21 @@ $buttons = @(
     @{Text="System Informer"; Action={Start-Process "https://systeminformer.com/canary" }}
 )
 
-foreach ($btnInfo in $buttons) {
+foreach ($b in $buttons) {
     $btn = New-Object System.Windows.Forms.Button
-    $btn.Text = $btnInfo.Text
+    $btn.Text = $b.Text
     $btn.Size = New-Object System.Drawing.Size(420, 52)
     $btn.Location = New-Object System.Drawing.Point(30, $y)
     $btn.BackColor = [System.Drawing.Color]::FromArgb(30, 140, 74)
-    $btn.ForeColor = [System.Drawing.Color]::White
+    $btn.ForeColor = "White"
     $btn.FlatStyle = "Flat"
     $btn.FlatAppearance.BorderSize = 0
     $btn.Font = New-Object System.Drawing.Font("Segoe UI", 12, [System.Drawing.FontStyle]::Bold)
-    $btn.Add_Click($btnInfo.Action)
+    $btn.Add_Click($b.Action)
     $form.Controls.Add($btn)
     $y += 65
 }
 
-# Console
 $consoleLabel = New-Object System.Windows.Forms.Label
 $consoleLabel.Text = "Activity Console"
 $consoleLabel.ForeColor = [System.Drawing.Color]::FromArgb(168, 255, 204)
@@ -67,7 +54,7 @@ $form.Controls.Add($consoleLabel)
 
 $console = New-Object System.Windows.Forms.TextBox
 $console.Location = New-Object System.Drawing.Point(520, 55)
-$console.Size = New-Object System.Drawing.Size(640, 580)
+$console.Size = New-Object System.Drawing.Size(500, 480)
 $console.BackColor = [System.Drawing.Color]::FromArgb(16, 17, 22)
 $console.ForeColor = [System.Drawing.Color]::FromArgb(160, 232, 192)
 $console.Font = New-Object System.Drawing.Font("Consolas", 11)
