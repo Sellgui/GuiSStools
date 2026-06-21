@@ -14,6 +14,34 @@ $dest = Join-Path $env:USERPROFILE "Downloads\Guiss-Tools"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent">
 
+    <Window.Resources>
+        <!-- Styles -->
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Height" Value="52"/>
+            <Setter Property="Margin" Value="0,0,0,12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="#182332"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Root" Background="{TemplateBinding Background}" CornerRadius="14" BorderBrush="#203040" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Root" Property="BorderBrush" Value="#4ADE80"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Border CornerRadius="24" Background="#0A120F" BorderBrush="#1A2E24" BorderThickness="1">
         <Grid>
             <!-- Top Bar -->
@@ -82,7 +110,7 @@ $dest = Join-Path $env:USERPROFILE "Downloads\Guiss-Tools"
                             </Border>
                         </Grid>
 
-                        <!-- Activity Console (veel kleiner) -->
+                        <!-- Activity Console (klein) -->
                         <Border Margin="0,25,0,0" Background="#0F1A16" CornerRadius="16" Padding="14" BorderBrush="#2A4738" BorderThickness="1">
                             <StackPanel>
                                 <TextBlock Text="Activity Console" FontSize="15" FontWeight="SemiBold" Foreground="White"/>
@@ -135,11 +163,11 @@ $MinButton.Add_Click({ $window.WindowState = "Minimized" })
 $ExitButton.Add_Click({ $window.Close() })
 
 $InstallButton.Add_Click({
-    $ActivityBox.AppendText("`n[$(Get-Date -Format HH:mm:ss)] Starting install...`n")
+    $ActivityBox.AppendText("`n[Install] Starting Guiss Tools installation...`n")
 })
 
 $DeleteButton.Add_Click({
-    $ActivityBox.AppendText("`n[$(Get-Date -Format HH:mm:ss)] Removing tools...`n")
+    $ActivityBox.AppendText("`n[Remove] Removing tools...`n")
 })
 
 $OpenFolderButton.Add_Click({
